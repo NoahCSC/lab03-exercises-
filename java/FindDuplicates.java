@@ -1,6 +1,9 @@
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class FindDuplicates {
 
@@ -24,6 +27,21 @@ public class FindDuplicates {
         return result;
     }
 
+    public static List<Integer> findDuplicatesSet(List<Integer> l) {
+        List<Integer> result = new ArrayList<Integer>(Arrays.asList());
+        HashMap<Integer, Integer> s1 = new HashMap<Integer, Integer>();
+        int key = 0;
+        for (int i = 0; i < l.size(); i++) {
+            if (s1.containsValue(l.get(i)) && !result.contains(l.get(i))) {
+                result.add(l.get(i));
+            } else {
+                s1.put(key, l.get(i));
+            }
+            key++;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         // some test strings:
         List<Integer> sample1 = new ArrayList<Integer>(Arrays.asList(3, 7, 5, 6, 7, 4, 8, 5, 7, 66));
@@ -34,6 +52,10 @@ public class FindDuplicates {
         System.out.println("Sample 2: " + findDuplicatesNestedLoops(sample2));
         System.out.println("Sample 3: " + findDuplicatesNestedLoops(sample3));
         System.out.println("Sample 4: " + findDuplicatesNestedLoops(sample4));
+        System.out.println("Sample 5: " + findDuplicatesSet(sample1));
+        System.out.println("Sample 6: " + findDuplicatesSet(sample2));
+        System.out.println("Sample 7: " + findDuplicatesSet(sample3));
+        System.out.println("Sample 8: " + findDuplicatesSet(sample4));
     }
 
 }
